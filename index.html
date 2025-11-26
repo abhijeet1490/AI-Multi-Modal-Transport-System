@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Multi-Modal Transport Optimizer</title>
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            slateBlue: '#1E3A8A',
+            emerald: '#10B981',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="min-h-screen bg-slate-100 font-sans text-slate-900">
+  <!-- Page shell -->
+  <div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="border-b border-slate-200 bg-gradient-to-r from-slateBlue to-emerald shadow-sm">
+      <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div>
+          <h1 class="text-xl sm:text-2xl font-semibold text-white tracking-tight">
+            AI Multi-Modal Transport System
+          </h1>
+          <p class="text-sm text-emerald-100 mt-1">
+            Intelligent route planning with cost, time, and CO₂ insights.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-xs sm:text-sm text-slate-100/80">
+          <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-slate-900/20 border border-slate-100/10">
+            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Dashboard
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="flex-1">
+      <div class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Responsive 2-column grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+          <!-- Left column: Input form card -->
+          <section
+            class="bg-white rounded-2xl shadow-md shadow-slate-200/70 border border-slate-100 p-6 sm:p-8">
+            <h2 class="text-lg font-semibold text-slate-900 mb-1">
+              Shipment Details
+            </h2>
+            <p class="text-sm text-slate-500 mb-6">
+              Enter basic shipment information to generate an AI-optimized route profile.
+            </p>
+
+            <form id="route-form" class="space-y-4">
+              <!-- Origin -->
+              <div class="space-y-1.5">
+                <label for="origin" class="block text-sm font-medium text-slate-700">
+                  Origin
+                </label>
+                <input id="origin" name="origin" type="text" autocomplete="off" required
+                  class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  placeholder="e.g., Mumbai, IN" />
+              </div>
+
+              <!-- Destination -->
+              <div class="space-y-1.5">
+                <label for="destination" class="block text-sm font-medium text-slate-700">
+                  Destination
+                </label>
+                <input id="destination" name="destination" type="text" autocomplete="off" required
+                  class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  placeholder="e.g., Delhi, IN" />
+              </div>
+
+              <!-- Weight (kg) -->
+              <div class="space-y-1.5">
+                <label for="weight" class="block text-sm font-medium text-slate-700">
+                  Weight (kg)
+                </label>
+                <input id="weight" name="weight" type="number" min="1" step="0.1" required
+                  class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  placeholder="e.g., 1200" />
+              </div>
+
+              <!-- Distance (km) -->
+              <div class="space-y-1.5">
+                <label for="distance" class="block text-sm font-medium text-slate-700">
+                  Distance (km)
+                </label>
+                <input id="distance" name="distance" type="number" min="1" step="1" required
+                  class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  placeholder="e.g., 750" />
+              </div>
+
+              <!-- Traffic Level (1-10) -->
+              <div class="space-y-1.5">
+                <label for="traffic" class="block text-sm font-medium text-slate-700">
+                  Traffic Level (1–10)
+                </label>
+                <input id="traffic" name="traffic" type="number" min="1" max="10" step="1" required
+                  class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  placeholder="e.g., 5" />
+                <p class="text-xs text-slate-400">
+                  1 = very light, 10 = heavy congestion.
+                </p>
+              </div>
+
+              <!-- Button -->
+              <div class="pt-2">
+                <button type="submit"
+                  class="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-black shadow-md shadow-emerald-500/30 hover:bg-emerald-700 hover:text-black focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-slate-50 transition">
+                  Calculate Route
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Right column: Results dashboard -->
+          <section
+            class="bg-white rounded-2xl shadow-md shadow-slate-200/70 border border-slate-100 p-6 sm:p-8 min-h-[200px] space-y-4">
+            <h2 class="text-lg font-semibold text-slate-900">
+              Results Dashboard
+            </h2>
+            <p class="text-sm text-slate-500">
+              Once calculated, your optimized route metrics will appear here.
+            </p>
+
+            <!-- Error box (hidden by default) -->
+            <div id="error-box"
+              class="hidden rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">
+              <span id="error-message">Unable to fetch route prediction. Please try again.</span>
+            </div>
+
+            <!-- Results cards (hidden until we have data) -->
+            <div id="results-card" class="hidden grid grid-cols-1 md:grid-cols-3 gap-4">
+              <!-- Total Cost -->
+              <div
+                class="rounded-xl bg-slate-900 text-slate-50 px-4 py-4 shadow-md shadow-slate-400/40 flex flex-col gap-2">
+                <span class="text-xs uppercase tracking-wide text-slate-300">Total Cost</span>
+                <span id="result-cost" class="text-xl font-semibold">
+                  —
+                </span>
+                <span class="text-[11px] text-slate-300">
+                  Estimated freight cost for this shipment.
+                </span>
+              </div>
+
+              <!-- Time Estimate -->
+              <div
+                class="rounded-xl bg-blue-600 text-slate-50 px-4 py-4 shadow-md shadow-blue-400/40 flex flex-col gap-2">
+                <span class="text-xs uppercase tracking-wide text-blue-100">Time Estimate</span>
+                <span id="result-time" class="text-xl font-semibold">
+                  —
+                </span>
+                <span class="text-[11px] text-blue-100/90">
+                  Approximate door-to-door transit time.
+                </span>
+              </div>
+
+              <!-- CO₂ Emissions -->
+              <div
+                class="rounded-xl bg-emerald-600 text-emerald-50 px-4 py-4 shadow-md shadow-emerald-400/50 flex flex-col gap-2">
+                <span class="text-xs uppercase tracking-wide text-emerald-100">CO₂ Emissions</span>
+                <span id="result-co2" class="text-xl font-semibold">
+                  —
+                </span>
+                <span class="text-[11px] text-emerald-100/90">
+                  Carbon footprint for the selected route.
+                </span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const form = document.getElementById('route-form');
+      const submitButton = form.querySelector('button[type="submit"]');
+      const resultsCard = document.getElementById('results-card');
+      const errorBox = document.getElementById('error-box');
+      const errorMessage = document.getElementById('error-message');
+
+      const costEl = document.getElementById('result-cost');
+      const timeEl = document.getElementById('result-time');
+      const co2El = document.getElementById('result-co2');
+
+      const API_URL = 'http://127.0.0.1:5001/predict_route'; // match Flask server port
+
+      function setLoading(isLoading) {
+        if (!submitButton) return;
+        if (isLoading) {
+          submitButton.disabled = true;
+          submitButton.dataset.originalText = submitButton.textContent;
+          submitButton.textContent = 'Calculating...';
+          submitButton.classList.add('opacity-70', 'cursor-wait');
+        } else {
+          submitButton.disabled = false;
+          if (submitButton.dataset.originalText) {
+            submitButton.textContent = submitButton.dataset.originalText;
+          }
+          submitButton.classList.remove('opacity-70', 'cursor-wait');
+        }
+      }
+
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        // Hide previous error
+        errorBox.classList.add('hidden');
+
+        const distance = parseFloat(document.getElementById('distance').value);
+        const weight = parseFloat(document.getElementById('weight').value);
+        const traffic = parseFloat(document.getElementById('traffic').value);
+
+        if (isNaN(distance) || isNaN(weight) || isNaN(traffic)) {
+          errorMessage.textContent = 'Please provide numeric values for distance, weight, and traffic.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+
+        setLoading(true);
+
+        try {
+          const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              distance: distance,
+              weight: weight,
+              traffic: traffic,
+            }),
+          });
+
+          if (!response.ok) {
+            let errorText = 'Unable to fetch route prediction.';
+            try {
+              const errData = await response.json();
+              if (errData && errData.error) {
+                errorText = errData.error;
+              }
+            } catch (e) {
+              // ignore JSON parse errors, keep generic error
+            }
+            throw new Error(errorText);
+          }
+
+          const data = await response.json();
+
+          if (!data.success || !data.data) {
+            throw new Error(data.error || 'Unexpected API response.');
+          }
+
+          const { cost, time, co2 } = data.data;
+
+          costEl.textContent = `₹ ${Number(cost).toFixed(2)}`;
+          timeEl.textContent = `${Number(time).toFixed(2)} hours`;
+          co2El.textContent = `${Number(co2).toFixed(2)} kg CO₂`;
+
+          // Show results card
+          resultsCard.classList.remove('hidden');
+        } catch (err) {
+          errorMessage.textContent = err.message || 'Network error while fetching prediction.';
+          errorBox.classList.remove('hidden');
+        } finally {
+          setLoading(false);
+        }
+      });
+    })();
+  </script>
+</body>
+
+</html>
+
+

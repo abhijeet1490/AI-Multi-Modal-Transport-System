@@ -1,0 +1,6 @@
+Flask
+flask-cors
+scikit-learn
+pandas
+numpy
+# pickle is part of the Python standard library (no pip install needed)
