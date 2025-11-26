@@ -439,6 +439,12 @@ Potential improvements for a production system:
 ## 👤 Author
 
 University Final Year Project - AI-Powered Multi-Modal Transport System
+Abhijeet Singh (220027164002)
+Krishna Mahajan (20002710028)
+Kavyansh Gupta (20002710025)
+Keshav Verma (20002710026)
+Under the Supervision of
+Mr. Eshank Jain
 
 ---
 
